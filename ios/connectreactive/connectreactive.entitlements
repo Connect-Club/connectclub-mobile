@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:app.cnnct.club/.well-known/apple-app-site-association</string>
+		<string>applinks:app.cnnct.club</string>
+		<string>applinks:connect-club.onelink.me</string>
+		<string>applinks:app.connect.club</string>
+		<string>applinks:dnpwt-alternate.app.link</string>
+		<string>applinks:cnnctVP.app.link</string>
+		<string>applinks:app-stage.cnnct.club</string>
+		<string>applinks:dnpwt-alternate.test-app.link</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,2 @@
+*.pbxproj -text
+/ios/JitsiWebRTC/jitsi-webrtc/WebRTC/WebRTC.xcframework/ios-arm64/WebRTC.framework/WebRTC filter=lfs diff=lfs merge=lfs -text

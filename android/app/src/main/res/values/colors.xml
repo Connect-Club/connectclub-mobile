@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ebony">#080725</color>
+    <color name="background">#F0F0F0</color>
+    <color name="systemColor">#52000000</color>
+    <color name="secondaryHeader">#DE000000</color>
+
+    <color name="avatarLettersColor">#8A000000</color>
+</resources>

@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion buildVersions.compileSdkVersion
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion buildVersions.minSdkVersion
+        targetSdkVersion buildVersions.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    api libraries.webrtc
+    api project(':libwebrtc')
+
+    implementation libraries.retrofit
+    implementation libraries.retrofitScalars
+    implementation libraries.okhttpUrlconnection
+    implementation libraries.okhttp
+    implementation libraries.okhttpLoggingInterceptor
+    // implementation libraries.bugsnag
+    // Moshi
+    implementation libraries.moshi
+    implementation libraries.moshiAdapters
+    implementation libraries.retrofitMoshiConverter
+
+    implementation libraries.kotlin
+    implementation androidLibraries.coreKtx
+    implementation androidLibraries.lifecycle
+    implementation androidLibraries.liveDataKtx
+}
+
+configurations {
+    all*.exclude group: 'xpp3', module: 'xpp3'
+}

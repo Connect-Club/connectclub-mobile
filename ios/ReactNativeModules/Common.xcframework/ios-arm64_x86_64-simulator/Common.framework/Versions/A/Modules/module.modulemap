@@ -1,0 +1,8 @@
+framework module "Common" {
+	header "ref.h"
+    header "Common.objc.h"
+    header "Universe.objc.h"
+    header "Common.h"
+
+    export *
+}

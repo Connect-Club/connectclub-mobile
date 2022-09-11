@@ -1,0 +1,80 @@
+default_platform(:ios,'9.0')
+
+lane :beta do
+  # ensure_git_status_clean
+  ensure_env_vars(
+    env_vars: ['FASTLANE_USER', 'FASTLANE_PASSWORD', 'TEAM_ID', 'DEMO_NAME', 'DEMO_PASSWORD']
+  )
+  yarn(
+    command: "install"
+  )
+  yarn(
+    command: "run build:ios"
+  )
+  cocoapods(
+    podfile: "ios/Podfile",
+    repo_update: true
+  )
+  cert( api_key_path: "fastlane/apikey.json" )
+  get_provisioning_profile( api_key_path: "fastlane/apikey.json" )
+  build_app(
+    workspace: "ios/connectreactive.xcworkspace",
+    scheme: "connectreactive",
+    export_options: {
+      provisioningProfiles: {
+        "club.connect.ConnectClub" => "club.connect.ConnectClub AppStore 1648226337",
+        "club.connect.ConnectClub.ImageNotification" => "ImageNotification profile"
+      }
+    }
+  )
+  upload_to_testflight(
+    api_key_path: "fastlane/apikey.json",
+    notify_external_testers: true,
+    distribute_external: true,
+    demo_account_required: true,
+    groups: ['internaltest'],
+    changelog: "bug fix",
+    team_id: "#{ENV['TEAM_ID']}",
+    beta_app_review_info: {
+      demo_account_name: "#{ENV['DEMO_NAME']}",
+      demo_account_password: "#{ENV['DEMO_PASSWORD']}",
+      contact_email: "vadim.filimonov@connect.club",
+      contact_first_name: "Vadim",
+      contact_last_name: "Filimonov",
+      contact_phone: "+35796900653",
+      notes: "Video that demonstrates the background audio functionality\nhttps://drive.google.com/file/d/1XVQFVOm-6JVFsdiJw8mOoQBrakTX1dHS/view"
+    }
+  )
+  upload_source_maps_to_bugsnag
+  clean_build_artifacts
+end
+
+lane :refresh_dsyms do
+  ensure_env_vars(
+    env_vars: ['BUGSNAG_API_KEY', 'FASTLANE_USER', 'FASTLANE_PASSWORD']
+  )
+  version = get_version_number(
+    xcodeproj: "ios/connectreactive.xcodeproj",
+    target: "connectreactive"
+  )
+  build_no = get_build_number(
+    xcodeproj: "ios/connectreactive.xcodeproj"
+  )
+  ## https://github.com/fastlane/fastlane/discussions/17485
+  ## download_dsyms cannot work with API_KEY
+  download_dsyms(version: "#{version}", build_number: "#{build_no}")
+  upload_symbols_to_bugsnag
+end
+
+lane :upload_source_maps_to_bugsnag do
+  version = get_version_number(
+    xcodeproj: "ios/connectreactive.xcodeproj",
+    target: "connectreactive"
+  )
+  build_no = get_build_number(
+    xcodeproj: "ios/connectreactive.xcodeproj"
+  )
+  sh(
+    "cd .. && node ./node_modules/.bin/bugsnag-source-maps upload-react-native --api-key #{ENV['BUGSNAG_API_KEY']} --app-version #{version} --app-bundle-version #{build_no} --platform ios --source-map './ios-release.bundle.map' --bundle './ios/main.jsbundle'"
+  )
+end

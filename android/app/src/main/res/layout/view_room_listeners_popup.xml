@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listenersRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/popupHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/listeners_header_height"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/coordinator"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/popupView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_popup"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_handle" />
+
+            <com.connect.club.view.CustomLinearLayout
+                android:id="@+id/headerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/topicTitleView"
+                    android:layout_width="match_parent"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollHorizontally="true"
+                    android:freezesText="true"
+                    android:ellipsize="marquee"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/secondaryHeader"
+                    android:textSize="18sp"
+                    tools:text="All Day Dreaming Radio: ...All Day Dreaming Radio: ...All Day Dreaming Radio: ..." />
+
+                <TextView
+                    android:id="@+id/listenersNumView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:lineHeight="21sp"
+                    android:textColor="@color/systemColor"
+                    android:textSize="13sp"
+                    app:drawableStartCompat="@drawable/ic_person_16dp"
+                    tools:text="10k" />
+
+                <TextView
+                    android:id="@+id/speakersNumView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:drawablePadding="2dp"
+                    android:lineHeight="21sp"
+                    android:textColor="@color/systemColor"
+                    android:textSize="13sp"
+                    app:drawableStartCompat="@drawable/ic_chats_16dp"
+                    tools:text="3" />
+            </com.connect.club.view.CustomLinearLayout>
+
+            <com.connect.club.view.CustomRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="9dp"
+                android:paddingBottom="32dp" />
+
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

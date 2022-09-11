@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Connect.Club</string>
+
+    <string name="facebook_app_id" translatable="false">1843444689282361</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2056437574453094</string>
+    <string name="room_service_notification_title">On a Call</string>
+    <string name="room_service_notification_message">Tap to return to Connect.Club</string>
+    <string name="service_notifications_channel_name">Call</string>
+    <string name="service_notifications_channel_description">For displaying status of a video call</string>
+    <string name="unknownUserNameInitials">N/A</string>
+    <string name="unknownUserName">Not Available</string>
+    <string name="link">Link</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="textAppearance" format="reference" />
+
+    <declare-styleable name="AvatarView">
+        <attr name="textAppearance" />
+        <attr name="android:textStyle" />
+        <attr name="lettersAutoSize" format="boolean" />
+        <attr name="stroke" format="boolean" />
+    </declare-styleable>
+</resources>

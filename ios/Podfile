@@ -1,0 +1,39 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '13.0'
+
+target 'connectreactive' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+#  use_flipper!
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera/"
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone/"
+  pod 'react-native-branch', path: '../node_modules/react-native-branch'
+
+  pod 'DifferenceKit', '~> 1.1'
+  pod 'Kingfisher', '~> 5.2.0'
+  
+  pod 'NVActivityIndicatorView'
+  pod 'Intercom'
+
+  pod 'react-native-appsflyer', :path => '../node_modules/react-native-appsflyer'
+
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
+end
+
+target 'ImageNotification' do
+  pod 'Firebase/Messaging', '~> 8.13.0'
+  pod 'Kingfisher', '~> 5.2.0'
+end

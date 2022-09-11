@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingTop="6dp"
+    android:paddingBottom="12dp">
+
+    <RelativeLayout
+        android:id="@+id/userViewFrame"
+        android:layout_width="@dimen/listener_diameter"
+        android:layout_height="@dimen/listener_diameter"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/listener_margin"
+        android:layout_marginEnd="@dimen/listener_margin"
+        android:clipChildren="false">
+
+        <com.connect.club.view.AvatarView
+            android:id="@+id/avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_avatar"
+            app:lettersAutoSize="true"
+            app:stroke="true" />
+
+        <ImageView
+            android:id="@+id/badge"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-6dp"
+            android:layout_marginEnd="-6dp"
+            android:background="@drawable/bg_white_oval"
+            android:elevation="2dp"
+            android:src="@drawable/ic_crown_16dp"
+            android:translationZ="2dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/reaction"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-6dp"
+            android:layout_marginEnd="-6dp"
+            android:background="@drawable/bg_white_oval"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/listenerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:fadingEdgeLength="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineHeight="21sp"
+        android:maxWidth="@dimen/listener_diameter"
+        android:requiresFadingEdge="horizontal"
+        android:singleLine="true"
+        android:textColor="@color/secondaryHeader"
+        android:textSize="13sp"
+        tools:text="Ivan" />
+</LinearLayout>

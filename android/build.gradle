@@ -1,0 +1,101 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'dependencies.gradle'
+
+buildscript {
+    apply from: 'dependencies.gradle'
+    ext {
+        kotlinVersion = versions.kotlin
+        buildToolsVersion = buildVersions.buildToolsVersion
+        minSdkVersion = buildVersions.minSdkVersion
+        compileSdkVersion = buildVersions.compileSdkVersion
+        targetSdkVersion = buildVersions.targetSdkVersion
+    }
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath plugs.kotlinPlugin
+        classpath "com.android.tools.build:gradle:${versions.gradle}"
+        classpath("com.bugsnag:bugsnag-android-gradle-plugin:5.+")
+        classpath 'com.google.gms:google-services:4.3.5'
+        classpath plugs.playPublisherPlugin
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+
+        google()
+        maven { url 'https://www.jitpack.io' }
+        // jcenter huck
+        jcenter {
+            content {
+                includeGroup "com.henninghall.android"
+                includeGroup "cn.aigestudio.wheelpicker"
+            }
+        }
+
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            // jcenter huck
+            if (details.requested.group == 'com.facebook.yoga' && details.requested.name == 'proguard-annotations' && details.requested.version == '1.14.1') {
+                details.useVersion '1.19.0'
+                details.because 'fixes problems with jcenter repo'
+            } else if (details.requested.group == 'com.facebook.fbjni' && details.requested.name == 'fbjni-java-only' && details.requested.version == '0.0.3') {
+                details.useVersion '0.0.4'
+                details.because 'fixes problems with jcenter repo'
+            } else if (details.requested.group == 'com.otaliastudios.opengl' && details.requested.name == 'egloo' && details.requested.version == '0.4.0') {
+                details.useVersion '0.6.1'
+                details.because 'fixes problems with jcenter repo'
+            } else if (details.requested.group == 'com.facebook.fresco' && details.requested.name == 'flipper' && details.requested.version == '2.4.0') {
+                details.useVersion '2.5.0'
+                details.because 'fixes problems with jcenter repo'
+            } else if (details.requested.group == 'com.facebook.fresco' && details.requested.name == 'stetho' && details.requested.version == '2.4.0') {
+                details.useVersion '2.5.0'
+                details.because 'fixes problems with jcenter repo'
+            }
+        }
+    }
+    afterEvaluate { project ->
+        def propsFile = rootProject.file('keystore.properties')
+        def configName = 'release'
+
+        if (propsFile.exists() && project.hasProperty("android") && project.android.signingConfigs.hasProperty(configName)) {
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            android.signingConfigs[configName].storeFile = file(props['storeFile'])
+            android.signingConfigs[configName].storePassword = props['storePassword']
+            android.signingConfigs[configName].keyAlias = props['keyAlias']
+            android.signingConfigs[configName].keyPassword = props['keyPassword']
+        }
+    }
+}
+subprojects {
+    afterEvaluate {
+        project ->
+            if (project.hasProperty("android")) {
+                android {
+                    compileSdkVersion = buildVersions.compileSdkVersion
+                    buildToolsVersion = buildVersions.buildToolsVersion
+                }
+            }
+    }
+}

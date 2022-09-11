@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "654472276281",
+    "firebase_url": "https://connect-club-225400.firebaseio.com",
+    "project_id": "connect-club-225400",
+    "storage_bucket": "connect-club-225400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654472276281:android:c5f370892b5e723720a0e8",
+        "android_client_info": {
+          "package_name": "com.connect.club"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654472276281-m1nqm1pcgsj6rdbpcvt9g0n91h23vhuh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.connect.club",
+            "certificate_hash": "98d68ce20b43d375b32c48281a8253a9f0ac7ce5"
+          }
+        },
+        {
+          "client_id": "654472276281-hpvti35mavr025k17o1e7uqr08rbmmrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZDno8p0hhb5YyHjYUSpFfxbS-oeKGjVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654472276281-1alb7ckhk7654jc26rf094glkn8hfrhl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "654472276281-7qjv7hcsgmv0mefftif03h1865gi83h2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "club.connect.ConnectClub"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
