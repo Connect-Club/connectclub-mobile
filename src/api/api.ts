@@ -1215,7 +1215,7 @@ const getDeviceIdInternal = async (): Promise<string> => {
 function getEndpoint(): string {
   switch (buildConfig.releaseStage) {
     case 'testing':
-      return 'https://api-dev.stage.connect.club'
+      return 'http://DOCKER_HOST_ADDRESS:8092/api'
     case 'staging':
       return 'https://api.stage.connect.club/api'
     case 'production':
